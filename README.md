@@ -16,4 +16,5 @@ When you're happy and it's time to ship, run:
 webpack -p
 ```
 
-This will create a minified version of `bundle.js`. Then you can simply open `index.html` in your browser and enjoy the fruits of your labor.
+This will create a minified version of `bundle.js`.
+Open `index.html` in your browser and enjoy the fruits of your labor.
