@@ -17,14 +17,20 @@ let context = canvas.getContext(`2d`)
 
 function render () {
   let hue = 180
-  let position = [ 0, 0 ]
-  let size = [ 100, 100 ]
+
+  let originX = canvas.width / 2
+  let originY = canvas.height / 2
+  let coordinates = [ originX, originY ]
+
+  let radius = 100
+  let angle = [ 0, Math.PI * 2 ]
 
   context.beginPath()
   context.fillStyle = `hsl(${hue}, 75%, 50%)`
-  context.rect(
-    ...position,
-    ...size
+  context.arc(
+    ...coordinates,
+    radius,
+    ...angle
   )
   context.fill()
 }
