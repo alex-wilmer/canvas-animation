@@ -16,26 +16,33 @@ window.onresize = fitWindow
 let context = canvas.getContext(`2d`)
 
 function render (time) {
-  time = time / 10
+  time = time
 
-  let hue = time % 360
+  let maxSize = Math.min(canvas.width, canvas.height) * 0.3
 
-  let position = [
-    time * 5 % canvas.width,
-    time * 5 % canvas.height
-  ]
+  for (let i = 0; i < 300; i += 10) {
+    let r = (maxSize / 240 * i)
+    let a = i * (Math.PI * (3 - Math.sqrt(5)))
 
-  let size = time % 100 // radians
-  let angle = [ 0, 360 ]
+    // let hue = time % 360
 
-  context.beginPath()
-  context.fillStyle = `hsl(${hue}, 75%, 50%)`
-  context.arc(
-    ...position,
-    size,
-    ...angle
-  )
-  context.fill()
+    let position = [
+      (canvas.width / 2) + Math.sin(a) * (r),
+      (canvas.height / 2) + Math.cos(a + Math.PI * (0 / canvas.height)) * (r)
+    ]
+
+    let size = time % 50 // radians
+    let angle = [ 0, Math.PI * 2 ]
+
+    context.beginPath()
+    context.fillStyle = 'hsl(' + (i * Math.tan(time / 10000)) + ', 100%, 50%)'
+    context.arc(
+      ...position,
+      size,
+      ...angle
+    )
+    context.fill()
+  }
 
   window.requestAnimationFrame(render)
 }
