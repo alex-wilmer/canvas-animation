@@ -1,28 +1,41 @@
-let canvas =
-  document.querySelector(`canvas`)
+// Setup
 
-canvas.width =
-  window.innerWidth
+let canvas = document.querySelector(`canvas`)
 
-canvas.height =
-  window.innerHeight
+function fitCanvas () {
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+}
 
-let context =
-  canvas.getContext(`2d`)
+window.onresize = fitCanvas
 
-let render = (t) => {
-  t += 1000
+fitCanvas()
 
-  console.log(t)
+// The fun part
 
-  let height = Math.abs(Math.sin(t)) * 500
+let context = canvas.getContext(`2d`)
 
-  console.log(height)
+function render (time) {
+  let hue = time % 360
+  let saturation = 50
+  let light = 50
 
-  context.fillStyle = `rgb(200,0,0)`
-  context.fillRect(0, 0, height, 100)
+  let position = [ canvas.width / 2, canvas.height / 2 ]
+  let size = 100
+  let angle = [ 0, 360 ]
 
-  return requestAnimationFrame(render)
+  context.beginPath()
+  context.fillStyle = `hsl(${hue}, ${saturation}%, ${light}%)`
+
+  context.arc(
+    ...position,
+    size,
+    ...angle
+  )
+
+  context.fill()
+
+  window.requestAnimationFrame(render)
 }
 
 render()
