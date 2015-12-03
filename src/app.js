@@ -1,28 +1,59 @@
-let canvas =
-  document.querySelector(`canvas`)
 
-canvas.width =
-  window.innerWidth
+  var canvas = document.querySelector('canvas'),
+  	context = canvas.getContext('2d');
 
-canvas.height =
-  window.innerHeight
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-let context =
-  canvas.getContext(`2d`)
+  var config = {
+      time: 7e7,
+      size: 400,
+      dots: 1,
+  	blend: 'screen'
+  }
 
-let render = (t) => {
-  t += 1000
+  var mouse = {x:0, y: 0};
 
-  console.log(t)
+  function render(t) {
 
-  let height = Math.abs(Math.sin(t)) * 500
+    var t = config.time + t;
 
-  console.log(height)
+    canvas.width = canvas.width;
 
-  context.fillStyle = `rgb(200,0,0)`
-  context.fillRect(0, 0, height, 100)
+    let oX = canvas.width / 2
+    let oY = canvas.height / 2
 
-  return requestAnimationFrame(render)
-}
+  	var size = Math.min(canvas.width, canvas.height) *.40;
 
-render()
+
+    for (var i=0; i<config.dots; i++) {
+
+        var r = (size/config.dots * i),
+            a = i * (Math.PI*(3 - Math.sqrt(5))),
+            s = 0.15 * Math.sin(t*(i/config.dots)/100),
+            sz =  Math.max(0, (r * s) + Math.sqrt(r));
+
+        context.beginPath();
+        context.fillStyle = 'hsl('+(i*Math.tan(t/10000))+', 100%, 50%)';
+        context.arc(oX + Math.sin(a+Math.PI*(mouse.x/canvas.width)) * (r), oY +
+					Math.cos(a+Math.PI*(mouse.y/canvas.height)) * (r), sz/2, 0, 2*Math.PI);
+        context.fill();
+    }
+
+    return requestAnimationFrame(render);
+  }
+
+  render();
+
+  window.onmouseover = function(e) {
+      mouse = {x: e.clientX, y: e.clientY};
+  };
+
+  window.onmousemove = function(e) {
+      mouse = {x: e.clientX, y: e.clientY};
+  };
+
+  window.onresize = function(e) {
+  	canvas.width = window.innerWidth;
+  	canvas.height = window.innerHeight;
+  };
