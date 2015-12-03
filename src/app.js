@@ -17,6 +17,7 @@ let context = canvas.getContext(`2d`)
 
 function render (time) {
   time = time / 10
+  canvas.width = canvas.width
 
   let hue = time % 360
 
