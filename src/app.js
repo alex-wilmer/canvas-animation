@@ -15,8 +15,8 @@ window.onresize = fitWindow
 
 let context = canvas.getContext(`2d`)
 
-function render () {
-  let hue = 180
+function render (time) {
+  let hue = time / 10 % 360
   let position = [ canvas.width / 2, canvas.height / 2 ]
   let size = 100 // radians
   let angle = [ 0, Math.PI * 2 ]
@@ -29,6 +29,8 @@ function render () {
     ...angle
   )
   context.fill()
+
+  window.requestAnimationFrame(render)
 }
 
 render()
