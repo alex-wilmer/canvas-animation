@@ -16,9 +16,16 @@ window.onresize = fitWindow
 let context = canvas.getContext(`2d`)
 
 function render (time) {
-  let hue = time / 10 % 360
-  let position = [ canvas.width / 2, canvas.height / 2 ]
-  let size = 100 // radians
+  time = time / 10
+
+  let hue = time % 360
+
+  let position = [
+    time * 5 % canvas.width,
+    time * 5 % canvas.height
+  ]
+
+  let size = time % 100 // radians
   let angle = [ 0, 360 ]
 
   context.beginPath()
