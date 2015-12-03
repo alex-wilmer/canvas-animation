@@ -17,15 +17,23 @@ let context = canvas.getContext(`2d`)
 
 function render (time) {
   let hue = time / 10 % 360
-  let position = [ canvas.width / 2, canvas.height / 2 ]
-  let size = 100 // radians
+
+  let originX = canvas.width / 2
+  let originY = canvas.height / 2
+
+  let coordinates = [
+    time % canvas.width,
+    time % canvas.height
+  ]
+
+  let radius = time / 10 % 100
   let angle = [ 0, Math.PI * 2 ]
 
   context.beginPath()
   context.fillStyle = `hsl(${hue}, 75%, 50%)`
   context.arc(
-    ...position,
-    size,
+    ...coordinates,
+    radius,
     ...angle
   )
   context.fill()
