@@ -16,11 +16,15 @@ window.onresize = fitWindow
 let context = canvas.getContext(`2d`)
 
 function render () {
+  let hue = 180
+  let position = [ 0, 0 ]
+  let size = [ 100, 100 ]
+
   context.beginPath()
-  context.fillStyle = `hsl(180, 75%, 50%)`
+  context.fillStyle = `hsl(${hue}, 75%, 50%)`
   context.rect(
-    0, 0,
-    100, 100
+    ...position,
+    ...size
   )
   context.fill()
 }
