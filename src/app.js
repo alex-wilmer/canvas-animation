@@ -4,33 +4,26 @@ let context = canvas.getContext('2d')
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-let config = {
-  time: 7e7,
-  size: 400,
-  dots: 360,
-  blend: 'screen'
-}
+let originX = canvas.width / 2
+let originY = canvas.height / 2
+
+let dots = 100
 
 function render (t) {
   canvas.width = canvas.width
 
-  let oX = canvas.width / 2
-  let oY = canvas.height / 2
-
-  let size = Math.min(canvas.width, canvas.height) * 0.4
-
-  for (let i = 0; i < config.dots; i += 1) {
-    let r = (size / config.dots * i)
-    let a = i * (Math.PI * (3 - Math.sqrt(5)))
-    let s = 0.15 * Math.sin(t * (i / config.dots) / 100)
-    let sz = Math.max(0, (r * s) + Math.sqrt(r))
+  for (let i = 0; i < dots; i += 1) {
+    let s = Math.sin(t * (i / dots) / 100)
+    let radius = Math.abs(i * s)
 
     context.beginPath()
-    context.fillStyle = 'hsl(' + (i * Math.tan(t / 10000)) + ', 100%, 50%)'
+    context.fillStyle =
+      `hsl(${i * Math.tan(t / 10000)}, 100%, 50%)`
+
     context.arc(
-      oX + Math.sin(a + Math.PI * (canvas.width)) * (r),
-      oY + Math.cos(a + Math.PI * (canvas.height)) * (r),
-      sz / 2,
+      originX + Math.sin(i) * i,
+      originY + Math.cos(i) * i,
+      radius / 5,
       0,
       2 * Math.PI
     )
