@@ -41,7 +41,7 @@ function render (time) {
     let radius = Math.max(0, Math.sin(time * i / 30000)) * (i / 10)
     let angle = [ 0, Math.PI * 2 ]
 
-    let hue = time / i % 360
+    let hue = time / i * (mouse.y / 100)
 
     context.beginPath()
     context.fillStyle = `hsl(${ hue }, 67%, 51%)`
