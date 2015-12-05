@@ -11,6 +11,14 @@ window.onresize = handleResize
 
 handleResize()
 
+let mouse = { x: 0, y: 0 }
+
+window.onmouseover = event =>
+  mouse = { x: event.clientX, y: event.clientY }
+
+window.onmousemove = event =>
+  mouse = { x: event.clientX, y: event.clientY }
+
 // the fun part
 
 let context = canvas.getContext(`2d`)
@@ -21,7 +29,7 @@ function render (time) {
   let originX = canvas.width / 2
   let originY = canvas.height / 2
 
-  let dots = 360
+  let dots = mouse.x
 
   for (let i = 0; i < dots; i += 1) {
 
@@ -30,7 +38,7 @@ function render (time) {
       originY + Math.cos(i) * i
     ]
 
-    let radius = Math.max(0, Math.sin(time * i / 30000)) * (i / 10) 
+    let radius = Math.max(0, Math.sin(time * i / 30000)) * (i / 10)
     let angle = [ 0, Math.PI * 2 ]
 
     let hue = time / i % 360
