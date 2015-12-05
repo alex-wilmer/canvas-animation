@@ -32,13 +32,14 @@ function render (time) {
   let dots = mouse.x
 
   for (let i = 0; i < dots; i += 1) {
-
     let coordinates = [
       originX + Math.sin(i) * i,
       originY + Math.cos(i) * i
     ]
 
-    let radius = Math.max(0, Math.sin(time * i / 30000)) * (i / 10)
+    let radius =
+      Math.max(0, Math.sin(time * i / 30000)) * i / 10
+
     let angle = [ 0, Math.PI * 2 ]
 
     let hue = time / i * (mouse.y / 100)
