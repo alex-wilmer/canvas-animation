@@ -11,7 +11,16 @@ window.onresize = handleResize
 
 handleResize()
 
+// Audio
+
+let AudioContext = window.AudioContext
+let audioContext = new AudioContext()
+
+// Mouse
+
 let mouse = { x: 0, y: 0 }
+
+//
 
 window.onmouseover = event =>
   mouse = { x: event.clientX, y: event.clientY }
