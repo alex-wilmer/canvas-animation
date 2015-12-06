@@ -1,58 +1,50 @@
-// setup
+## The Program
+
+```javascript
+// Setup
 
 let canvas = document.querySelector(`canvas`)
 
-function handleResize () {
+function fitWindow () {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 }
 
-window.onresize = handleResize
+fitWindow()
 
-handleResize()
+window.onresize = fitWindow
 
-let mouse = { x: 0, y: 0 }
-
-window.onmouseover = event =>
-  mouse = { x: event.clientX, y: event.clientY }
-
-window.onmousemove = event =>
-  mouse = { x: event.clientX, y: event.clientY }
-
-// the fun part
+// The fun part!
 
 let context = canvas.getContext(`2d`)
 
 function render (time) {
-  time = time % 100000
-
   canvas.width = canvas.width
 
   let originX = canvas.width / 2
   let originY = canvas.height / 2
 
-  let dots = mouse.x
+  let dots = 360
 
   for (let i = 0; i < dots; i += 1) {
+    let hue = time / 10000 * i % 360
+
     let coordinates = [
       originX + Math.sin(i) * i,
       originY + Math.cos(i) * i
     ]
 
-    let radius =
-      Math.max(0, Math.sin(time * i / 30000)) * i / 10
+    let radius = Math.max(0, Math.sin(time / 30000 * i)) * i / 2
 
     let angle = [ 0, Math.PI * 2 ]
 
-    let hue = time / i * mouse.y / 150 % 360
-
     context.beginPath()
+    context.fillStyle = `hsl(${hue}, 75%, 50%)`
     context.arc(
       ...coordinates,
-      radius,
+      radius / 5,
       ...angle
     )
-    context.fillStyle = `hsl(${ hue }, 67%, 51%)`
     context.fill()
   }
 
@@ -60,3 +52,4 @@ function render (time) {
 }
 
 render()
+```

@@ -1,10 +1,12 @@
 # Remaking 'The Golden Angle'
 
-**[Demo](http://alex-wilmer.github.io/canvas-animation/)** - If you only see an empty black screen, move your mouse around.
+**[Demo](http://alex-wilmer.github.io/canvas-animation/)** - If you see an empty black screen, move your mouse around.
+
+**[Audio Visualizer Demo](http://45.55.239.144:8000/)** - May take 5 - 10 seconds to load audio.
 
 ### A Simple HTML5 Canvas Tutorial
 
-When I first saw [The Golden Angle](http://codepen.io/tucsky/pen/QjmpBw) by [@Tucsky](https://twitter.com/Tucsky) I marveled at the beauty of the animation, but was astonished by what seemed like an impossibly short program. In this repository I have deconstructed the code into a set of steps that are easy to follow.
+When I first saw [The Golden Angle](http://codepen.io/tucsky/pen/QjmpBw) by [@Tucsky](https://twitter.com/Tucsky) I marveled at the beauty of the animation, but was astonished by what seemed like an impossibly short program. In this repository I have deconstructed the code into a series of simple steps.
 
 Hopefully after this you will feel confident about using the canvas API and be inspired to you create your own animations.
 
@@ -24,4 +26,4 @@ This will run the Webpack dev server which will refresh the page for us every ti
 
 Go to `localhost:8080` in your browser to see the completed animation.
 
-To begin the tutorial `git checkout step-1`
+#### [Read the full tutorial here.](https://github.com/alex-wilmer/canvas-animation/blob/master/tutorial/full-tutorial.md)
