@@ -13,6 +13,14 @@ window.onresize = fitWindow
 
 // The fun part!
 
+let mouse = { x: 0, y: 0 }
+
+window.onmouseover = event =>
+  mouse = { x: event.clientX, y: event.clientY }
+
+window.onmousemove = event =>
+  mouse = { x: event.clientX, y: event.clientY }
+
 let context = canvas.getContext(`2d`)
 
 function render (time) {
@@ -27,11 +35,11 @@ function render (time) {
     let hue = time / 10000 * i % 360
 
     let coordinates = [
-      originX + Math.sin(i) * i,
-      originY + Math.cos(i) * i
+      originX + Math.sin(i * Math.PI / mouse.x) * i,
+      originY + Math.cos(i * Math.PI / mouse.y) * i
     ]
 
-    let radius = Math.max(0, Math.sin(time / 30000 * i)) * i / 2
+    let radius = Math.max(0, Math.sin(time / 30000 * i)) * i / 5
 
     let angle = [ 0, Math.PI * 2 ]
 
