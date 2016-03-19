@@ -27,3 +27,4 @@ This will run the Webpack dev server which will refresh the page for us every ti
 Go to `localhost:8080` in your browser to see the completed animation.
 
 #### [Read the full tutorial here.](https://github.com/alex-wilmer/canvas-animation/blob/master/tutorial/full-tutorial.md)
+first rejection
